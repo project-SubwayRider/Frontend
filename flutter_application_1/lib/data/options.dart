@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:csv/csv.dart';
 
-List<String> locations = []; // ✅ 기존 main.dart가 쓰던 변수 그대로 유지
+List<String> locations = [];
 
 Future<void> loadLocationsFromCsv() async {
   final rawData = await rootBundle.loadString('assets/locations.csv');
@@ -12,7 +12,6 @@ Future<void> loadLocationsFromCsv() async {
   locations = csvData.skip(1).map((row) => row[0].toString()).toList();
 }
 
-// const 그대로 유지
 const List<String> foods = ['빵', '김밥', '치킨'];
 const List<String> times = [
   '00:10',
