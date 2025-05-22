@@ -36,7 +36,7 @@ class DeliveryApp extends StatelessWidget {
         '/review': (context) => const ReviewScreen(),
         '/settings': (context) => const SettingsScreen(),
         '/wishlist': (context) => const WishlistScreen(),
-        '/completed': (context) => const CompletedDeliveryScreen(),
+        '/completed': (context) => const CompletedOrdersScreen(),
         '/history': (context) => const OrderHistoryScreen(),
       },
     );
