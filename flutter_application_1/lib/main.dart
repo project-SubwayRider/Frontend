@@ -11,6 +11,11 @@ import 'screens/settings_screen.dart';
 import 'screens/wishlist_screen.dart';
 import 'screens/completed_orders_screen.dart';
 import 'screens/order_history_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/delivery_detail.dart';
+import 'screens/deliverying.dart';
+import 'screens/delivery_detail_d.dart';
+import 'screens/deliverying_d.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,8 +30,9 @@ class DeliveryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Delivery App',
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
+        '/login': (context) => const LoginScreen(),
         '/': (context) => const HomeScreen(),
         '/delivery': (context) => const DeliveryFormScreen(),
         '/requests': (context) => const RequestListScreen(),
@@ -38,6 +44,10 @@ class DeliveryApp extends StatelessWidget {
         '/wishlist': (context) => const WishlistScreen(),
         '/completed': (context) => const CompletedOrdersScreen(),
         '/history': (context) => const OrderHistoryScreen(),
+        '/delivery_detail': (context) => const DeliveryDetailScreen(),
+        '/delivery_detail_d': (context) => const DeliveryDetailDScreen(),
+        '/deliverying': (context) => const DeliveryingScreen(),
+        '/deliverying_d': (context) => const DeliveryingDScreen(),
       },
     );
   }

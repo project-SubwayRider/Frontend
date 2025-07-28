@@ -38,6 +38,20 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('My 화면'),
             ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/delivery_detail');
+              },
+              child: const Text('배달 상세'),
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/deliverying');
+              },
+              child: const Text('배달 중'),
+            ),
           ],
         ),
       ),
