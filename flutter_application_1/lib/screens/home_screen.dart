@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:deliveryapp/data/order_history_data.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -39,16 +40,26 @@ class HomeScreen extends StatelessWidget {
               child: const Text('My 화면'),
             ),
             const SizedBox(height: 16),
+            // ✅ 요청자 화면
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/delivery_detail');
+                Navigator.pushNamed(
+                  context,
+                  '/delivery_detail_base',
+                  arguments: orderHistories[0],
+                );
               },
               child: const Text('배달 상세'),
             ),
             const SizedBox(height: 16),
+            // ✅ 배달자 화면
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/deliverying');
+                Navigator.pushNamed(
+                  context,
+                  '/deliverying_base',
+                  arguments: orderHistories[1],
+                );
               },
               child: const Text('배달 중'),
             ),

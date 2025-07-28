@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
-import '../data/order_history_data.dart'; // 반드시 존재해야 함
+import '../data/order_history_data.dart'; // OrderHistory import
 
-class DeliveryDetailBase extends StatefulWidget {
-  final OrderHistory order;
-
-  const DeliveryDetailBase({super.key, required this.order});
+class DeliveryDetailDelivererScreen extends StatefulWidget {
+  const DeliveryDetailDelivererScreen({super.key});
 
   @override
-  State<DeliveryDetailBase> createState() => _DeliveryDetailBaseState();
+  State<DeliveryDetailDelivererScreen> createState() =>
+      _DeliveryDetailDelivererScreenState();
 }
 
-class _DeliveryDetailBaseState extends State<DeliveryDetailBase> {
+class _DeliveryDetailDelivererScreenState
+    extends State<DeliveryDetailDelivererScreen> {
   bool isCancelled = false;
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments;
-    final order = args is OrderHistory ? args : orderHistories[0];
+    final order = args is OrderHistory ? args : orderHistories[1];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('배달 받는 사람'),
+        title: const Text('배달 하기'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pushNamedAndRemoveUntil(
               context,
               '/', // home_screen.dart로 이동
-              (route) => false, // 이전 페이지 스택 제거
+              (route) => false,
             );
           },
         ),
@@ -39,7 +40,7 @@ class _DeliveryDetailBaseState extends State<DeliveryDetailBase> {
           children: [
             if (isCancelled)
               const Center(
-                child: Text('배달 중인 음식 없음', style: TextStyle(fontSize: 24)),
+                child: Text('배달 대기 음식 없음', style: TextStyle(fontSize: 24)),
               )
             else ...[
               // 이미지
@@ -56,13 +57,37 @@ class _DeliveryDetailBaseState extends State<DeliveryDetailBase> {
               ),
               const SizedBox(height: 40),
 
-              // 텍스트 정보
-              Text(
-                '음식 : ${order.food}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
+              // 음식 + 찜 버튼
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '음식 : ${order.food}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      color: isFavorite ? Colors.red : null,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            isFavorite ? '찜 목록에 추가되었습니다' : '찜 목록에서 제거되었습니다',
+                          ),
+                          duration: const Duration(seconds: 1),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
 
@@ -91,8 +116,8 @@ class _DeliveryDetailBaseState extends State<DeliveryDetailBase> {
                         context: context,
                         builder:
                             (context) => AlertDialog(
-                              title: const Text('취소 확인'),
-                              content: const Text('진짜 취소하시겠습니까?'),
+                              title: const Text('배달 시작 확인'),
+                              content: const Text('정말 배달 시작하시겠습니까?'),
                               actions: [
                                 TextButton(
                                   onPressed: () {
@@ -114,8 +139,8 @@ class _DeliveryDetailBaseState extends State<DeliveryDetailBase> {
                       );
                     },
                     child: const Text(
-                      '취소',
-                      style: TextStyle(color: Colors.red),
+                      '배달 시작',
+                      style: TextStyle(color: Colors.blue),
                     ),
                   ),
                 ],
@@ -123,18 +148,19 @@ class _DeliveryDetailBaseState extends State<DeliveryDetailBase> {
               const SizedBox(height: 24),
             ],
 
-            // ✅ 항상 보이는 토글
+            // ✅ 항상 표시되는 토글 버튼
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('배달 받는 사람', style: TextStyle(fontSize: 16)),
                 Switch(
-                  value: false,
+                  value: true,
                   onChanged: (value) {
-                    Navigator.pushNamed(
+                    Navigator.pushReplacementNamed(
                       context,
-                      '/delivery_detail_deliverer',
-                      arguments: orderHistories[1],
+                      '/delivery_detail_base',
+                      arguments: orderHistories[0], // 요청자용 데이터
                     );
                   },
                 ),
