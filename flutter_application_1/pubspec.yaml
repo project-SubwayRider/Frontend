@@ -52,6 +52,11 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  fonts:
+    - family: NeoDgm
+      fonts:
+        - asset: assets/fonts/neodgm.ttf
+          weight: 700
   assets:
     - assets/locations.csv
     - assets/1.png
@@ -61,10 +66,12 @@ flutter:
     - assets/5.png
     - assets/profile.png
     - assets/ramyeon.jpg
-    # - assets/tteokbok.jpg'
-    # - assets/pizza.jpg'
-    # - assets/kimbap.jpg'
-    # - assets/chicken.jpg'
+    - assets/tteokbok.jpg
+    - assets/pizza.jpg
+    - assets/kimbap.jpg
+    - assets/chicken.jpg
+    - assets/Title.png
+    - assets/Icon1.png
     
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
