@@ -61,10 +61,22 @@ flutter:
     - assets/5.png
     - assets/profile.png
     - assets/ramyeon.jpg
+<<<<<<< Updated upstream
     # - assets/tteokbok.jpg'
     # - assets/pizza.jpg'
     # - assets/kimbap.jpg'
     # - assets/chicken.jpg'
+=======
+    - assets/tteokbok.jpg
+    - assets/pizza.jpg
+    - assets/kimbap.jpg
+    - assets/chicken.jpg
+    - assets/Title.png
+    - assets/Icon1.png
+    - assets/Icon2.png
+    - assets/Icon3.png
+    - assets/Icon4.png
+>>>>>>> Stashed changes
     
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

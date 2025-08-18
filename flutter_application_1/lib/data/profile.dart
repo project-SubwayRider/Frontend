@@ -33,7 +33,7 @@ final UserProfile userProfile = UserProfile(
   id: 'chltjdghks80',
   name: '최성환',
   nickname: '위고비파이터',
-  password: '••••••••',
+  password: '1234',
   birthdate: '2000-04-21',
   startStation: '하계역&월계역',
   endStation: '영통역',
