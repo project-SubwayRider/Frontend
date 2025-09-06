@@ -106,8 +106,11 @@ class _ChatListScreenState extends State<ChatListScreen> {
                   return _ChatTile(
                     item: chat,
                     onTap: () {
-                      // 원하면 상세로 이동
-                      // Navigator.pushNamed(context, '/chat_detail', arguments: chat);
+                      Navigator.pushNamed(
+                        context,
+                        '/chats',
+                        arguments: chat, // ChatItem
+                      );
                     },
                   );
                 },
